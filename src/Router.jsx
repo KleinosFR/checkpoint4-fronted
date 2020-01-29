@@ -4,16 +4,19 @@ import HomePage from "./HomePage/HomePage";
 import ActsPage from "./ActsPage/ActsPage";
 import GalleryPage from "./GalleryPage/GalleryPage";
 import PricesPage from "./PricesPage/PricesPage";
+import Layout from "./Layout/Layout";
 
 function Router() {
     return (
         <BrowserRouter>
-            <Switch>
-                <Route exact path="/" component={HomePage} />
-                <Route path="/acts" component={ActsPage} />
-                <Route path="/gallery" component={GalleryPage} />
-                <Route path="/prices" component={PricesPage} />
-            </Switch>
+            <Layout>
+                <Switch>
+                    <Route exact path="/" component={HomePage} />
+                    <Route path="/acts" component={ActsPage} />
+                    <Route path="/gallery" component={GalleryPage} />
+                    <Route path="/prices" component={PricesPage} />
+                </Switch>
+            </Layout>
         </BrowserRouter>
     );
 }
