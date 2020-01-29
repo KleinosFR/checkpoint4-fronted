@@ -1,11 +1,13 @@
 import React from "react";
-import ImageUpload from "./Components/ImageUpload";
+import Router from "./Router";
+import Layout from "./Layout/Layout";
 
 function App() {
     return (
         <div className="App">
-            {" "}
-            <ImageUpload />{" "}
+            <Layout>
+                <Router />
+            </Layout>
         </div>
     );
 }
