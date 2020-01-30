@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Card, CardTitle, CardText, CardImg, CardImgOverlay } from "reactstrap";
+import React from "react";
+import { Card, CardText, CardImg, CardImgOverlay, Col } from "reactstrap";
 
 import introPic from "../Assets/Images/title-background.jpg";
 
@@ -11,7 +11,7 @@ const item = {
 function Intro() {
     return (
         <div>
-            <Card inverse style={{ height: "60vh" }}>
+            <Card inverse style={{ height: "25vh" }} className="m-3">
                 <CardImg
                     src={item.src}
                     alt={item.altText}
@@ -21,28 +21,34 @@ function Intro() {
                     }}
                 />
                 <CardImgOverlay>
-                    <CardText
-                        className="text-center m-5 font-weight-bold"
-                        style={{
-                            fontFamily: "Amatic SC",
-                            fontSize: "4em",
-                            color: "yellow",
-                            textShadow: "black 2px 2px"
-                        }}
-                    >
-                        Welcome to
-                    </CardText>
-                    <CardText
-                        className="text-center m-5 font-weight-bold"
-                        style={{
-                            fontFamily: "Amatic SC",
-                            fontSize: "6em",
-                            color: "yellow",
-                            textShadow: "black 2px 2px"
-                        }}
-                    >
-                        the Wild Circus
-                    </CardText>
+                    <Col>
+                        <CardText className="text-center font-weight-bold">
+                            <h2
+                                className="text-center font-weight-bold"
+                                style={{
+                                    fontFamily: "Amatic SC",
+                                    color: "yellow",
+                                    textShadow: "black 2px 2px",
+                                    fontSize: "35px"
+                                }}
+                            >
+                                Welcome to
+                            </h2>
+                        </CardText>
+                        <CardText className="text-center font-weight-bold col-12 m-0">
+                            <h1
+                                className="text-center font-weight-bold"
+                                style={{
+                                    fontFamily: "Amatic SC",
+                                    color: "yellow",
+                                    textShadow: "black 2px 2px",
+                                    fontSize: "45px"
+                                }}
+                            >
+                                the Wild Circus
+                            </h1>
+                        </CardText>
+                    </Col>
                 </CardImgOverlay>
             </Card>
         </div>
