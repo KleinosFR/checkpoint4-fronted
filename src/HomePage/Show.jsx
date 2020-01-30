@@ -51,7 +51,7 @@ function Show({ show }) {
                 <ModalBody>
                     <Col className="w-100">
                         <Card className="w-100">
-                            <CardImg src={show.image} />
+                            <CardImg src={show.image} className="p-2" />
                             <CardText>{show.description}</CardText>
                             <CardText>
                                 <ListGroup className="w-100 mx-5">

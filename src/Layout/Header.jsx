@@ -68,7 +68,12 @@ function Header() {
                             </NavItem>
                         ))}
                     </Nav>
-                    <Button color="secondary">Admin</Button>
+                    <Button
+                        color="secondary"
+                        onClick={() => history.push("/admin")}
+                    >
+                        Admin
+                    </Button>
                 </Collapse>
             </Navbar>
         </>

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input, Button, Media } from "reactstrap";
+import { Form, Input, Button, Media, Row } from "reactstrap";
 import axios from "axios";
 
 const apiUrl = "http://localhost:8000";
 
-function ImageUpload() {
+function ImageUpload({ setImageUrl, initialImage }) {
     const [image, setImage] = useState(null);
-    const [previewImage, setPreviewImage] = useState(null);
+    const [previewImage, setPreviewImage] = useState(initialImage);
 
     useEffect(() => {
         if (image) {
@@ -23,7 +23,7 @@ function ImageUpload() {
     };
 
     const resetImage = () => {
-        setPreviewImage(null);
+        setPreviewImage(initialImage);
         setImage(null);
     };
 
@@ -31,20 +31,28 @@ function ImageUpload() {
         const formData = new FormData();
         formData.append("image", image);
 
-        axios
-            .post(`${apiUrl}/mediaobject`, formData)
-            .then(res => console.log(res));
+        axios.post(`${apiUrl}/mediaobject`, formData).then(res => {
+            console.log(res);
+            const imageUrl = `${apiUrl}/media/${res.data.filename}`;
+            console.log(imageUrl);
+            setImageUrl(imageUrl);
+        });
     };
 
     return (
         <Form>
-            <Media left>
-                <Media
-                    object
-                    src={previewImage}
-                    alt="Generic placeholder image"
-                />
-            </Media>
+            <Row>
+                {(initialImage || previewImage) && (
+                    <Media left>
+                        <Media
+                            object
+                            src={previewImage ? previewImage : initialImage}
+                            alt="Generic placeholder image"
+                            style={{ width: "100%" }}
+                        />
+                    </Media>
+                )}
+            </Row>
             <Input type="file" onChange={e => handleChange(e)} />
             <Button onClick={() => handleUpload()}>Envoyer</Button>
             <Button onClick={() => resetImage()}>Effacer l'image</Button>
