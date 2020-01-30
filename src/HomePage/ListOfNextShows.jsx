@@ -1,20 +1,5 @@
-import React, { useState } from "react";
-import {
-    ListGroupItem,
-    ListGroup,
-    ListGroupItemHeading,
-    ListGroupItemText,
-    Row,
-    Modal,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
-    Button,
-    Card,
-    CardText,
-    CardImg,
-    Col
-} from "reactstrap";
+import React from "react";
+import { ListGroup, Row } from "reactstrap";
 import Show from "./Show";
 
 function ListOfNextShows({ shows }) {

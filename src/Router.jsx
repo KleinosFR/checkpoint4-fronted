@@ -5,6 +5,7 @@ import ActsPage from "./ActsPage/ActsPage";
 import GalleryPage from "./GalleryPage/GalleryPage";
 import PricesPage from "./PricesPage/PricesPage";
 import Layout from "./Layout/Layout";
+import AdminPage from "./AdminPage/AdminPage";
 
 function Router() {
     return (
@@ -15,6 +16,7 @@ function Router() {
                     <Route path="/acts" component={ActsPage} />
                     <Route path="/gallery" component={GalleryPage} />
                     <Route path="/prices" component={PricesPage} />
+                    <Route path="/admin" component={AdminPage} />
                 </Switch>
             </Layout>
         </BrowserRouter>

@@ -4,7 +4,7 @@ import axios from "axios";
 
 const apiUrl = "http://localhost:8000";
 
-function ImageUpload() {
+function ImageUpload({ setImageUrl, initialImage }) {
     const [image, setImage] = useState(null);
     const [previewImage, setPreviewImage] = useState(null);
 

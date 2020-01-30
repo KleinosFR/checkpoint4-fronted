@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Row } from "reactstrap";
+import { Card, Row, CardText, CardHeader, CardImg } from "reactstrap";
 import axios from "axios";
 
 import Intro from "./Intro";
@@ -37,7 +37,16 @@ function HomePage() {
                 <Intro />
             </Row>
             <Row>
-                <NextShow nextShowInfo={nextShowInfo} />
+                {nextShowInfo ? (
+                    <NextShow nextShowInfo={nextShowInfo} />
+                ) : (
+                    <Card>
+                        <CardHeader>
+                            Come back soon to see our next shows
+                        </CardHeader>
+                        <CardImg src="" />
+                    </Card>
+                )}
             </Row>
             <Row>
                 <ListOfNextShows shows={allNextShows} />
