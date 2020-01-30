@@ -1,12 +1,13 @@
 import React from "react";
 import BoShows from "./BoShows/BoShows";
+import BoPrices from "./BoPrices/BoPrices";
 
 function BoListsRouter({ navTab }) {
     switch (navTab) {
         case "shows":
             return <BoShows />;
         case "prices":
-            return <div>prices</div>;
+            return <BoPrices />;
         case "artists":
             return <div>artists</div>;
         case "acts":

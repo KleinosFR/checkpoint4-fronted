@@ -3,7 +3,7 @@ import Login from "./Login";
 import BoMainpage from "./Backofice/BoMainpage";
 
 function AdminPage() {
-    const [isAuth, setIsAuth] = useState(true);
+    const [isAuth, setIsAuth] = useState(false);
 
     return (
         <>
