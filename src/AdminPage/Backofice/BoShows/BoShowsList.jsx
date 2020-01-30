@@ -8,7 +8,7 @@ import BoShowForm from "./BoShowForm";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
-function BoShowsList({ show, setRefresh }) {
+function BoShowsList({ show, handleRefresh }) {
     const [modal, setModal] = useState(false);
 
     const handleDelete = async () => {
@@ -16,10 +16,10 @@ function BoShowsList({ show, setRefresh }) {
             .delete(`${apiUrl}/shows/${show.uuid}`)
             .then(res => toast("succesfully deleted"))
             .catch(err => console.log("todo : handle error", err));
-        setRefresh(Date.now());
+        handleRefresh();
     };
 
-    useEffect(() => setRefresh(Date.now()), [modal]);
+    // useEffect(() => handleRefresh(), [modal]);
 
     return (
         <>
@@ -43,7 +43,11 @@ function BoShowsList({ show, setRefresh }) {
                         <>N/A</>
                     )}
                 </td>
-                <td onClick={() => setModal(!modal)}>
+                <td
+                    onClick={() => {
+                        setModal(!modal);
+                    }}
+                >
                     <FontAwesomeIcon icon={faPencilAlt} />
                 </td>
                 <td onClick={() => handleDelete()}>
@@ -59,6 +63,7 @@ function BoShowsList({ show, setRefresh }) {
                         action={"edit"}
                         initialValues={show}
                         setModal={value => setModal(value)}
+                        handleRefresh={() => handleRefresh()}
                     />
                 </ModalBody>
                 <ModalFooter>

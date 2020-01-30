@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
-function BoShowForm({ action, initialValues, setModal }) {
+function BoShowForm({ action, initialValues, setModal, handleRefresh }) {
     const [payload, setPayload] = useState({});
     const [priceList, setPriceList] = useState([]);
 
@@ -28,22 +28,27 @@ function BoShowForm({ action, initialValues, setModal }) {
         }
     }, []);
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (action === "edit") {
-            Axios.put(`${apiUrl}/shows/${payload.uuid}`, payload)
+            await Axios.put(`${apiUrl}/shows/${payload.uuid}`, payload)
                 .then(res => console.log(res.data))
                 .catch(err => console.log("error"));
         } else if (action === "create") {
-            Axios.post(`${apiUrl}/shows/`, payload)
+            await Axios.post(`${apiUrl}/shows/`, payload)
                 .then(res => console.log(res.data))
                 .catch(err => console.log("error"));
         }
+        console.log("refresh");
         setModal(false);
+        handleRefresh();
     };
 
     return (
-        <form>
-            <ImageUpload />
+        <form style={{ width: "100%" }}>
+            <ImageUpload
+                setImageUrl={url => setPayload({ ...payload, image: url })}
+                initialImage={payload.image}
+            />
             <Input
                 type="date"
                 value={payload.date}

@@ -16,15 +16,22 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
 function BoShows() {
     const [allShows, setAllShows] = useState([]);
-    const [refresh, setRefresh] = useState(true);
+    const [refresh, setRefresh] = useState(null);
     const [modal, setModal] = useState(false);
 
     useEffect(() => {
-        axios
+        handleRefresh();
+    }, []);
+
+    const handleRefresh = async () => {
+        console.log("main refresh");
+
+        await axios
             .get(`${apiUrl}/shows`)
             .then(res => setAllShows(res.data))
             .catch(err => console.log("todo : manage errors", err));
-    }, [refresh, modal]);
+        setRefresh(Date.now());
+    };
 
     return (
         <>
@@ -47,7 +54,10 @@ function BoShows() {
                 </thead>
                 <tbody>
                     {allShows.map(show => (
-                        <BoShowsList show={show} setRefresh={setRefresh} />
+                        <BoShowsList
+                            show={show}
+                            handleRefresh={() => handleRefresh()}
+                        />
                     ))}
                 </tbody>
             </Table>
@@ -58,6 +68,7 @@ function BoShows() {
                 <ModalBody>
                     <BoShowForm
                         action={"create"}
+                        handleRefresh={() => handleRefresh()}
                         setModal={value => setModal(value)}
                     />
                 </ModalBody>
